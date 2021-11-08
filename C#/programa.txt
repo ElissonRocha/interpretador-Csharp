@@ -1,0 +1,8 @@
+float a = 7.5f, b=2.00f; 
+Console.WriteLine(a>b);
+Console.WriteLine(b);
+Console.WriteLine(a);
+Console.WriteLine(a/b);
+Console.WriteLine(a>=a);
+Console.WriteLine(b<=b);
+

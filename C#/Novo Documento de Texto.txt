@@ -1,0 +1,27 @@
+|REF VAR {
+		struct Valor v;
+		int tipo=gettipo($2);
+		switch(tipo){
+			case INT:
+				v.tipo=PINT;
+				v.pint=getValorAsPInt($2);
+				break;
+		}
+	}
+	|MULT VAR {
+		struct Valor v;
+		int tipo=gettipo($2);
+		switch(tipo){
+			case INT:
+			case FLOAT:
+			case DOUBLE:
+			case CHAR:
+			case STRING:
+				yyerror("tipo invalido para referencia");
+				exit(1);
+			case PINT:
+			v.tipo=INT;
+			v.integer=*getValorPInt($2);
+			break;
+		}
+	}

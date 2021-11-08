@@ -1,0 +1,10 @@
+unsafe:
+int inteiro1 = 13, inteiro2 = 26; 
+int* pInteiro1, pInteiro2;
+pInteiro1 = &inteiro1;
+pInteiro2 = &inteiro2;
+Console.Write("Endereço de memória de pInteiro1: ");
+Console.WriteLine(*pInteiro1);
+Console.Write("Endereço de memória de pInteiro2: ");
+Console.WriteLine(*pInteiro2);
+break;

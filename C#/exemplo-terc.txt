@@ -1,0 +1,6 @@
+int a=1, b, c, d=2;
+int e, f=3;
+string g = "Testando";
+string h, i="vai", j="dar";
+h="certo";
+Console.WriteLine(a);

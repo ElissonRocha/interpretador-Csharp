@@ -1,0 +1,1627 @@
+Terminals unused in grammar
+
+   BREAK
+   NOTBIT
+   IS
+   AS
+   CAND
+   COR
+   CNULA
+   COND
+   DOISPONTOS
+
+
+Grammar
+
+    0 $accept: programa $end
+
+    1 programa: comandos
+
+    2 comandos: comando
+    3         | comandos comando
+
+    4 comando: Atribuicao
+    5        | Write
+    6        | Print
+    7        | DeclaracaoDeVariavel
+
+    8 Write: WRITE DPAR Expressao EPAR SEMICOLON
+
+    9 Print: PRINT DPAR Expressao EPAR SEMICOLON
+
+   10 DeclaracaoDeVariavel: TIPO NVAR SEMICOLON
+
+   11 NVAR: VAR
+   12     | VAR ATRIB Expressao
+   13     | NVAR VIRGULA VAR
+   14     | NVAR VIRGULA VAR ATRIB Expressao
+
+   15 Atribuicao: VAR ATRIB Expressao SEMICOLON
+   16           | INCREM VAR SEMICOLON
+   17           | DECREM VAR SEMICOLON
+   18           | UMULT VAR ATRIB Expressao SEMICOLON
+   19           | UAND VAR ATRIB Expressao SEMICOLON
+
+   20 Expressao: Fator
+   21          | ExpressaoBin
+
+   22 ExpressaoBin: Expressao COMP Fator
+   23             | Expressao DIF Fator
+   24             | Expressao MAIOR Fator
+   25             | Expressao MENOR Fator
+   26             | Expressao MAIGUAL Fator
+   27             | Expressao MEIGUAL Fator
+   28             | Expressao AND Fator
+   29             | Expressao UAND Fator
+   30             | Expressao OR Fator
+   31             | Expressao XOR Fator
+   32             | Expressao COMP TIPO
+   33             | Expressao SOMA Fator
+   34             | Expressao SUB Fator
+   35             | NOT Fator
+
+   36 Fator: Fator MULT termo
+   37      | Fator UMULT termo
+   38      | Fator DIV termo
+   39      | Fator REST termo
+   40      | termo
+
+   41 termo: NUM_INT
+   42      | NUM_FLOAT
+   43      | NUM_DOUBLE
+   44      | SUB NUM_INT
+   45      | SUB NUM_FLOAT
+   46      | SUB NUM_DOUBLE
+   47      | DPAR Expressao EPAR
+   48      | BOOLEANO
+   49      | STR
+   50      | CARACTER
+   51      | UMULT VAR
+   52      | UAND VAR
+   53      | VAR
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256)
+BREAK (258)
+TIPO (259) 10 32
+VAR (260) 11 12 13 14 15 16 17 18 19 51 52 53
+ATRIB (261) 12 14 15 18 19
+PRINT (262) 9
+WRITE (263) 8
+STR (264) 49
+CARACTER (265) 50
+BOOLEANO (266) 48
+NUM_INT (267) 41 44
+NUM_FLOAT (268) 42 45
+NUM_DOUBLE (269) 43 46
+SOMA (270) 33
+SUB (271) 34 44 45 46
+DIV (272) 38
+MULT (273) 36
+UMULT (274) 18 37 51
+EPAR (275) 8 9 47
+DPAR (276) 8 9 47
+SEMICOLON (277) 8 9 10 15 16 17 18 19
+COMP (278) 22 32
+DIF (279) 23
+NOT (280) 35
+MAIOR (281) 24
+MENOR (282) 25
+MAIGUAL (283) 26
+MEIGUAL (284) 27
+INCREM (285) 16
+DECREM (286) 17
+NOTBIT (287)
+REST (288) 39
+IS (289)
+AS (290)
+UAND (291) 19 29 52
+AND (292) 28
+XOR (293) 31
+OR (294) 30
+CAND (295)
+COR (296)
+CNULA (297)
+COND (298)
+DOISPONTOS (299)
+VIRGULA (300) 13 14
+
+
+Nonterminals, with rules where they appear
+
+$accept (46)
+    on left: 0
+programa (47)
+    on left: 1, on right: 0
+comandos (48)
+    on left: 2 3, on right: 1 3
+comando (49)
+    on left: 4 5 6 7, on right: 2 3
+Write (50)
+    on left: 8, on right: 5
+Print (51)
+    on left: 9, on right: 6
+DeclaracaoDeVariavel (52)
+    on left: 10, on right: 7
+NVAR (53)
+    on left: 11 12 13 14, on right: 10 13 14
+Atribuicao (54)
+    on left: 15 16 17 18 19, on right: 4
+Expressao (55)
+    on left: 20 21, on right: 8 9 12 14 15 18 19 22 23 24 25 26 27
+    28 29 30 31 32 33 34 47
+ExpressaoBin (56)
+    on left: 22 23 24 25 26 27 28 29 30 31 32 33 34 35, on right: 21
+Fator (57)
+    on left: 36 37 38 39 40, on right: 20 22 23 24 25 26 27 28 29 30
+    31 33 34 35 36 37 38 39
+termo (58)
+    on left: 41 42 43 44 45 46 47 48 49 50 51 52 53, on right: 36 37
+    38 39 40
+
+
+State 0
+
+    0 $accept: . programa $end
+
+    TIPO    shift, and go to state 1
+    VAR     shift, and go to state 2
+    PRINT   shift, and go to state 3
+    WRITE   shift, and go to state 4
+    UMULT   shift, and go to state 5
+    INCREM  shift, and go to state 6
+    DECREM  shift, and go to state 7
+    UAND    shift, and go to state 8
+
+    programa              go to state 9
+    comandos              go to state 10
+    comando               go to state 11
+    Write                 go to state 12
+    Print                 go to state 13
+    DeclaracaoDeVariavel  go to state 14
+    Atribuicao            go to state 15
+
+
+State 1
+
+   10 DeclaracaoDeVariavel: TIPO . NVAR SEMICOLON
+
+    VAR  shift, and go to state 16
+
+    NVAR  go to state 17
+
+
+State 2
+
+   15 Atribuicao: VAR . ATRIB Expressao SEMICOLON
+
+    ATRIB  shift, and go to state 18
+
+
+State 3
+
+    9 Print: PRINT . DPAR Expressao EPAR SEMICOLON
+
+    DPAR  shift, and go to state 19
+
+
+State 4
+
+    8 Write: WRITE . DPAR Expressao EPAR SEMICOLON
+
+    DPAR  shift, and go to state 20
+
+
+State 5
+
+   18 Atribuicao: UMULT . VAR ATRIB Expressao SEMICOLON
+
+    VAR  shift, and go to state 21
+
+
+State 6
+
+   16 Atribuicao: INCREM . VAR SEMICOLON
+
+    VAR  shift, and go to state 22
+
+
+State 7
+
+   17 Atribuicao: DECREM . VAR SEMICOLON
+
+    VAR  shift, and go to state 23
+
+
+State 8
+
+   19 Atribuicao: UAND . VAR ATRIB Expressao SEMICOLON
+
+    VAR  shift, and go to state 24
+
+
+State 9
+
+    0 $accept: programa . $end
+
+    $end  shift, and go to state 25
+
+
+State 10
+
+    1 programa: comandos .
+    3 comandos: comandos . comando
+
+    TIPO    shift, and go to state 1
+    VAR     shift, and go to state 2
+    PRINT   shift, and go to state 3
+    WRITE   shift, and go to state 4
+    UMULT   shift, and go to state 5
+    INCREM  shift, and go to state 6
+    DECREM  shift, and go to state 7
+    UAND    shift, and go to state 8
+
+    $default  reduce using rule 1 (programa)
+
+    comando               go to state 26
+    Write                 go to state 12
+    Print                 go to state 13
+    DeclaracaoDeVariavel  go to state 14
+    Atribuicao            go to state 15
+
+
+State 11
+
+    2 comandos: comando .
+
+    $default  reduce using rule 2 (comandos)
+
+
+State 12
+
+    5 comando: Write .
+
+    $default  reduce using rule 5 (comando)
+
+
+State 13
+
+    6 comando: Print .
+
+    $default  reduce using rule 6 (comando)
+
+
+State 14
+
+    7 comando: DeclaracaoDeVariavel .
+
+    $default  reduce using rule 7 (comando)
+
+
+State 15
+
+    4 comando: Atribuicao .
+
+    $default  reduce using rule 4 (comando)
+
+
+State 16
+
+   11 NVAR: VAR .
+   12     | VAR . ATRIB Expressao
+
+    ATRIB  shift, and go to state 27
+
+    $default  reduce using rule 11 (NVAR)
+
+
+State 17
+
+   10 DeclaracaoDeVariavel: TIPO NVAR . SEMICOLON
+   13 NVAR: NVAR . VIRGULA VAR
+   14     | NVAR . VIRGULA VAR ATRIB Expressao
+
+    SEMICOLON  shift, and go to state 28
+    VIRGULA    shift, and go to state 29
+
+
+State 18
+
+   15 Atribuicao: VAR ATRIB . Expressao SEMICOLON
+
+    VAR         shift, and go to state 30
+    STR         shift, and go to state 31
+    CARACTER    shift, and go to state 32
+    BOOLEANO    shift, and go to state 33
+    NUM_INT     shift, and go to state 34
+    NUM_FLOAT   shift, and go to state 35
+    NUM_DOUBLE  shift, and go to state 36
+    SUB         shift, and go to state 37
+    UMULT       shift, and go to state 38
+    DPAR        shift, and go to state 39
+    NOT         shift, and go to state 40
+    UAND        shift, and go to state 41
+
+    Expressao     go to state 42
+    ExpressaoBin  go to state 43
+    Fator         go to state 44
+    termo         go to state 45
+
+
+State 19
+
+    9 Print: PRINT DPAR . Expressao EPAR SEMICOLON
+
+    VAR         shift, and go to state 30
+    STR         shift, and go to state 31
+    CARACTER    shift, and go to state 32
+    BOOLEANO    shift, and go to state 33
+    NUM_INT     shift, and go to state 34
+    NUM_FLOAT   shift, and go to state 35
+    NUM_DOUBLE  shift, and go to state 36
+    SUB         shift, and go to state 37
+    UMULT       shift, and go to state 38
+    DPAR        shift, and go to state 39
+    NOT         shift, and go to state 40
+    UAND        shift, and go to state 41
+
+    Expressao     go to state 46
+    ExpressaoBin  go to state 43
+    Fator         go to state 44
+    termo         go to state 45
+
+
+State 20
+
+    8 Write: WRITE DPAR . Expressao EPAR SEMICOLON
+
+    VAR         shift, and go to state 30
+    STR         shift, and go to state 31
+    CARACTER    shift, and go to state 32
+    BOOLEANO    shift, and go to state 33
+    NUM_INT     shift, and go to state 34
+    NUM_FLOAT   shift, and go to state 35
+    NUM_DOUBLE  shift, and go to state 36
+    SUB         shift, and go to state 37
+    UMULT       shift, and go to state 38
+    DPAR        shift, and go to state 39
+    NOT         shift, and go to state 40
+    UAND        shift, and go to state 41
+
+    Expressao     go to state 47
+    ExpressaoBin  go to state 43
+    Fator         go to state 44
+    termo         go to state 45
+
+
+State 21
+
+   18 Atribuicao: UMULT VAR . ATRIB Expressao SEMICOLON
+
+    ATRIB  shift, and go to state 48
+
+
+State 22
+
+   16 Atribuicao: INCREM VAR . SEMICOLON
+
+    SEMICOLON  shift, and go to state 49
+
+
+State 23
+
+   17 Atribuicao: DECREM VAR . SEMICOLON
+
+    SEMICOLON  shift, and go to state 50
+
+
+State 24
+
+   19 Atribuicao: UAND VAR . ATRIB Expressao SEMICOLON
+
+    ATRIB  shift, and go to state 51
+
+
+State 25
+
+    0 $accept: programa $end .
+
+    $default  accept
+
+
+State 26
+
+    3 comandos: comandos comando .
+
+    $default  reduce using rule 3 (comandos)
+
+
+State 27
+
+   12 NVAR: VAR ATRIB . Expressao
+
+    VAR         shift, and go to state 30
+    STR         shift, and go to state 31
+    CARACTER    shift, and go to state 32
+    BOOLEANO    shift, and go to state 33
+    NUM_INT     shift, and go to state 34
+    NUM_FLOAT   shift, and go to state 35
+    NUM_DOUBLE  shift, and go to state 36
+    SUB         shift, and go to state 37
+    UMULT       shift, and go to state 38
+    DPAR        shift, and go to state 39
+    NOT         shift, and go to state 40
+    UAND        shift, and go to state 41
+
+    Expressao     go to state 52
+    ExpressaoBin  go to state 43
+    Fator         go to state 44
+    termo         go to state 45
+
+
+State 28
+
+   10 DeclaracaoDeVariavel: TIPO NVAR SEMICOLON .
+
+    $default  reduce using rule 10 (DeclaracaoDeVariavel)
+
+
+State 29
+
+   13 NVAR: NVAR VIRGULA . VAR
+   14     | NVAR VIRGULA . VAR ATRIB Expressao
+
+    VAR  shift, and go to state 53
+
+
+State 30
+
+   53 termo: VAR .
+
+    $default  reduce using rule 53 (termo)
+
+
+State 31
+
+   49 termo: STR .
+
+    $default  reduce using rule 49 (termo)
+
+
+State 32
+
+   50 termo: CARACTER .
+
+    $default  reduce using rule 50 (termo)
+
+
+State 33
+
+   48 termo: BOOLEANO .
+
+    $default  reduce using rule 48 (termo)
+
+
+State 34
+
+   41 termo: NUM_INT .
+
+    $default  reduce using rule 41 (termo)
+
+
+State 35
+
+   42 termo: NUM_FLOAT .
+
+    $default  reduce using rule 42 (termo)
+
+
+State 36
+
+   43 termo: NUM_DOUBLE .
+
+    $default  reduce using rule 43 (termo)
+
+
+State 37
+
+   44 termo: SUB . NUM_INT
+   45      | SUB . NUM_FLOAT
+   46      | SUB . NUM_DOUBLE
+
+    NUM_INT     shift, and go to state 54
+    NUM_FLOAT   shift, and go to state 55
+    NUM_DOUBLE  shift, and go to state 56
+
+
+State 38
+
+   51 termo: UMULT . VAR
+
+    VAR  shift, and go to state 57
+
+
+State 39
+
+   47 termo: DPAR . Expressao EPAR
+
+    VAR         shift, and go to state 30
+    STR         shift, and go to state 31
+    CARACTER    shift, and go to state 32
+    BOOLEANO    shift, and go to state 33
+    NUM_INT     shift, and go to state 34
+    NUM_FLOAT   shift, and go to state 35
+    NUM_DOUBLE  shift, and go to state 36
+    SUB         shift, and go to state 37
+    UMULT       shift, and go to state 38
+    DPAR        shift, and go to state 39
+    NOT         shift, and go to state 40
+    UAND        shift, and go to state 41
+
+    Expressao     go to state 58
+    ExpressaoBin  go to state 43
+    Fator         go to state 44
+    termo         go to state 45
+
+
+State 40
+
+   35 ExpressaoBin: NOT . Fator
+
+    VAR         shift, and go to state 30
+    STR         shift, and go to state 31
+    CARACTER    shift, and go to state 32
+    BOOLEANO    shift, and go to state 33
+    NUM_INT     shift, and go to state 34
+    NUM_FLOAT   shift, and go to state 35
+    NUM_DOUBLE  shift, and go to state 36
+    SUB         shift, and go to state 37
+    UMULT       shift, and go to state 38
+    DPAR        shift, and go to state 39
+    UAND        shift, and go to state 41
+
+    Fator  go to state 59
+    termo  go to state 45
+
+
+State 41
+
+   52 termo: UAND . VAR
+
+    VAR  shift, and go to state 60
+
+
+State 42
+
+   15 Atribuicao: VAR ATRIB Expressao . SEMICOLON
+   22 ExpressaoBin: Expressao . COMP Fator
+   23             | Expressao . DIF Fator
+   24             | Expressao . MAIOR Fator
+   25             | Expressao . MENOR Fator
+   26             | Expressao . MAIGUAL Fator
+   27             | Expressao . MEIGUAL Fator
+   28             | Expressao . AND Fator
+   29             | Expressao . UAND Fator
+   30             | Expressao . OR Fator
+   31             | Expressao . XOR Fator
+   32             | Expressao . COMP TIPO
+   33             | Expressao . SOMA Fator
+   34             | Expressao . SUB Fator
+
+    SOMA       shift, and go to state 61
+    SUB        shift, and go to state 62
+    SEMICOLON  shift, and go to state 63
+    COMP       shift, and go to state 64
+    DIF        shift, and go to state 65
+    MAIOR      shift, and go to state 66
+    MENOR      shift, and go to state 67
+    MAIGUAL    shift, and go to state 68
+    MEIGUAL    shift, and go to state 69
+    UAND       shift, and go to state 70
+    AND        shift, and go to state 71
+    XOR        shift, and go to state 72
+    OR         shift, and go to state 73
+
+
+State 43
+
+   21 Expressao: ExpressaoBin .
+
+    $default  reduce using rule 21 (Expressao)
+
+
+State 44
+
+   20 Expressao: Fator .
+   36 Fator: Fator . MULT termo
+   37      | Fator . UMULT termo
+   38      | Fator . DIV termo
+   39      | Fator . REST termo
+
+    DIV    shift, and go to state 74
+    MULT   shift, and go to state 75
+    UMULT  shift, and go to state 76
+    REST   shift, and go to state 77
+
+    $default  reduce using rule 20 (Expressao)
+
+
+State 45
+
+   40 Fator: termo .
+
+    $default  reduce using rule 40 (Fator)
+
+
+State 46
+
+    9 Print: PRINT DPAR Expressao . EPAR SEMICOLON
+   22 ExpressaoBin: Expressao . COMP Fator
+   23             | Expressao . DIF Fator
+   24             | Expressao . MAIOR Fator
+   25             | Expressao . MENOR Fator
+   26             | Expressao . MAIGUAL Fator
+   27             | Expressao . MEIGUAL Fator
+   28             | Expressao . AND Fator
+   29             | Expressao . UAND Fator
+   30             | Expressao . OR Fator
+   31             | Expressao . XOR Fator
+   32             | Expressao . COMP TIPO
+   33             | Expressao . SOMA Fator
+   34             | Expressao . SUB Fator
+
+    SOMA     shift, and go to state 61
+    SUB      shift, and go to state 62
+    EPAR     shift, and go to state 78
+    COMP     shift, and go to state 64
+    DIF      shift, and go to state 65
+    MAIOR    shift, and go to state 66
+    MENOR    shift, and go to state 67
+    MAIGUAL  shift, and go to state 68
+    MEIGUAL  shift, and go to state 69
+    UAND     shift, and go to state 70
+    AND      shift, and go to state 71
+    XOR      shift, and go to state 72
+    OR       shift, and go to state 73
+
+
+State 47
+
+    8 Write: WRITE DPAR Expressao . EPAR SEMICOLON
+   22 ExpressaoBin: Expressao . COMP Fator
+   23             | Expressao . DIF Fator
+   24             | Expressao . MAIOR Fator
+   25             | Expressao . MENOR Fator
+   26             | Expressao . MAIGUAL Fator
+   27             | Expressao . MEIGUAL Fator
+   28             | Expressao . AND Fator
+   29             | Expressao . UAND Fator
+   30             | Expressao . OR Fator
+   31             | Expressao . XOR Fator
+   32             | Expressao . COMP TIPO
+   33             | Expressao . SOMA Fator
+   34             | Expressao . SUB Fator
+
+    SOMA     shift, and go to state 61
+    SUB      shift, and go to state 62
+    EPAR     shift, and go to state 79
+    COMP     shift, and go to state 64
+    DIF      shift, and go to state 65
+    MAIOR    shift, and go to state 66
+    MENOR    shift, and go to state 67
+    MAIGUAL  shift, and go to state 68
+    MEIGUAL  shift, and go to state 69
+    UAND     shift, and go to state 70
+    AND      shift, and go to state 71
+    XOR      shift, and go to state 72
+    OR       shift, and go to state 73
+
+
+State 48
+
+   18 Atribuicao: UMULT VAR ATRIB . Expressao SEMICOLON
+
+    VAR         shift, and go to state 30
+    STR         shift, and go to state 31
+    CARACTER    shift, and go to state 32
+    BOOLEANO    shift, and go to state 33
+    NUM_INT     shift, and go to state 34
+    NUM_FLOAT   shift, and go to state 35
+    NUM_DOUBLE  shift, and go to state 36
+    SUB         shift, and go to state 37
+    UMULT       shift, and go to state 38
+    DPAR        shift, and go to state 39
+    NOT         shift, and go to state 40
+    UAND        shift, and go to state 41
+
+    Expressao     go to state 80
+    ExpressaoBin  go to state 43
+    Fator         go to state 44
+    termo         go to state 45
+
+
+State 49
+
+   16 Atribuicao: INCREM VAR SEMICOLON .
+
+    $default  reduce using rule 16 (Atribuicao)
+
+
+State 50
+
+   17 Atribuicao: DECREM VAR SEMICOLON .
+
+    $default  reduce using rule 17 (Atribuicao)
+
+
+State 51
+
+   19 Atribuicao: UAND VAR ATRIB . Expressao SEMICOLON
+
+    VAR         shift, and go to state 30
+    STR         shift, and go to state 31
+    CARACTER    shift, and go to state 32
+    BOOLEANO    shift, and go to state 33
+    NUM_INT     shift, and go to state 34
+    NUM_FLOAT   shift, and go to state 35
+    NUM_DOUBLE  shift, and go to state 36
+    SUB         shift, and go to state 37
+    UMULT       shift, and go to state 38
+    DPAR        shift, and go to state 39
+    NOT         shift, and go to state 40
+    UAND        shift, and go to state 41
+
+    Expressao     go to state 81
+    ExpressaoBin  go to state 43
+    Fator         go to state 44
+    termo         go to state 45
+
+
+State 52
+
+   12 NVAR: VAR ATRIB Expressao .
+   22 ExpressaoBin: Expressao . COMP Fator
+   23             | Expressao . DIF Fator
+   24             | Expressao . MAIOR Fator
+   25             | Expressao . MENOR Fator
+   26             | Expressao . MAIGUAL Fator
+   27             | Expressao . MEIGUAL Fator
+   28             | Expressao . AND Fator
+   29             | Expressao . UAND Fator
+   30             | Expressao . OR Fator
+   31             | Expressao . XOR Fator
+   32             | Expressao . COMP TIPO
+   33             | Expressao . SOMA Fator
+   34             | Expressao . SUB Fator
+
+    SOMA     shift, and go to state 61
+    SUB      shift, and go to state 62
+    COMP     shift, and go to state 64
+    DIF      shift, and go to state 65
+    MAIOR    shift, and go to state 66
+    MENOR    shift, and go to state 67
+    MAIGUAL  shift, and go to state 68
+    MEIGUAL  shift, and go to state 69
+    UAND     shift, and go to state 70
+    AND      shift, and go to state 71
+    XOR      shift, and go to state 72
+    OR       shift, and go to state 73
+
+    $default  reduce using rule 12 (NVAR)
+
+
+State 53
+
+   13 NVAR: NVAR VIRGULA VAR .
+   14     | NVAR VIRGULA VAR . ATRIB Expressao
+
+    ATRIB  shift, and go to state 82
+
+    $default  reduce using rule 13 (NVAR)
+
+
+State 54
+
+   44 termo: SUB NUM_INT .
+
+    $default  reduce using rule 44 (termo)
+
+
+State 55
+
+   45 termo: SUB NUM_FLOAT .
+
+    $default  reduce using rule 45 (termo)
+
+
+State 56
+
+   46 termo: SUB NUM_DOUBLE .
+
+    $default  reduce using rule 46 (termo)
+
+
+State 57
+
+   51 termo: UMULT VAR .
+
+    $default  reduce using rule 51 (termo)
+
+
+State 58
+
+   22 ExpressaoBin: Expressao . COMP Fator
+   23             | Expressao . DIF Fator
+   24             | Expressao . MAIOR Fator
+   25             | Expressao . MENOR Fator
+   26             | Expressao . MAIGUAL Fator
+   27             | Expressao . MEIGUAL Fator
+   28             | Expressao . AND Fator
+   29             | Expressao . UAND Fator
+   30             | Expressao . OR Fator
+   31             | Expressao . XOR Fator
+   32             | Expressao . COMP TIPO
+   33             | Expressao . SOMA Fator
+   34             | Expressao . SUB Fator
+   47 termo: DPAR Expressao . EPAR
+
+    SOMA     shift, and go to state 61
+    SUB      shift, and go to state 62
+    EPAR     shift, and go to state 83
+    COMP     shift, and go to state 64
+    DIF      shift, and go to state 65
+    MAIOR    shift, and go to state 66
+    MENOR    shift, and go to state 67
+    MAIGUAL  shift, and go to state 68
+    MEIGUAL  shift, and go to state 69
+    UAND     shift, and go to state 70
+    AND      shift, and go to state 71
+    XOR      shift, and go to state 72
+    OR       shift, and go to state 73
+
+
+State 59
+
+   35 ExpressaoBin: NOT Fator .
+   36 Fator: Fator . MULT termo
+   37      | Fator . UMULT termo
+   38      | Fator . DIV termo
+   39      | Fator . REST termo
+
+    DIV    shift, and go to state 74
+    MULT   shift, and go to state 75
+    UMULT  shift, and go to state 76
+    REST   shift, and go to state 77
+
+    $default  reduce using rule 35 (ExpressaoBin)
+
+
+State 60
+
+   52 termo: UAND VAR .
+
+    $default  reduce using rule 52 (termo)
+
+
+State 61
+
+   33 ExpressaoBin: Expressao SOMA . Fator
+
+    VAR         shift, and go to state 30
+    STR         shift, and go to state 31
+    CARACTER    shift, and go to state 32
+    BOOLEANO    shift, and go to state 33
+    NUM_INT     shift, and go to state 34
+    NUM_FLOAT   shift, and go to state 35
+    NUM_DOUBLE  shift, and go to state 36
+    SUB         shift, and go to state 37
+    UMULT       shift, and go to state 38
+    DPAR        shift, and go to state 39
+    UAND        shift, and go to state 41
+
+    Fator  go to state 84
+    termo  go to state 45
+
+
+State 62
+
+   34 ExpressaoBin: Expressao SUB . Fator
+
+    VAR         shift, and go to state 30
+    STR         shift, and go to state 31
+    CARACTER    shift, and go to state 32
+    BOOLEANO    shift, and go to state 33
+    NUM_INT     shift, and go to state 34
+    NUM_FLOAT   shift, and go to state 35
+    NUM_DOUBLE  shift, and go to state 36
+    SUB         shift, and go to state 37
+    UMULT       shift, and go to state 38
+    DPAR        shift, and go to state 39
+    UAND        shift, and go to state 41
+
+    Fator  go to state 85
+    termo  go to state 45
+
+
+State 63
+
+   15 Atribuicao: VAR ATRIB Expressao SEMICOLON .
+
+    $default  reduce using rule 15 (Atribuicao)
+
+
+State 64
+
+   22 ExpressaoBin: Expressao COMP . Fator
+   32             | Expressao COMP . TIPO
+
+    TIPO        shift, and go to state 86
+    VAR         shift, and go to state 30
+    STR         shift, and go to state 31
+    CARACTER    shift, and go to state 32
+    BOOLEANO    shift, and go to state 33
+    NUM_INT     shift, and go to state 34
+    NUM_FLOAT   shift, and go to state 35
+    NUM_DOUBLE  shift, and go to state 36
+    SUB         shift, and go to state 37
+    UMULT       shift, and go to state 38
+    DPAR        shift, and go to state 39
+    UAND        shift, and go to state 41
+
+    Fator  go to state 87
+    termo  go to state 45
+
+
+State 65
+
+   23 ExpressaoBin: Expressao DIF . Fator
+
+    VAR         shift, and go to state 30
+    STR         shift, and go to state 31
+    CARACTER    shift, and go to state 32
+    BOOLEANO    shift, and go to state 33
+    NUM_INT     shift, and go to state 34
+    NUM_FLOAT   shift, and go to state 35
+    NUM_DOUBLE  shift, and go to state 36
+    SUB         shift, and go to state 37
+    UMULT       shift, and go to state 38
+    DPAR        shift, and go to state 39
+    UAND        shift, and go to state 41
+
+    Fator  go to state 88
+    termo  go to state 45
+
+
+State 66
+
+   24 ExpressaoBin: Expressao MAIOR . Fator
+
+    VAR         shift, and go to state 30
+    STR         shift, and go to state 31
+    CARACTER    shift, and go to state 32
+    BOOLEANO    shift, and go to state 33
+    NUM_INT     shift, and go to state 34
+    NUM_FLOAT   shift, and go to state 35
+    NUM_DOUBLE  shift, and go to state 36
+    SUB         shift, and go to state 37
+    UMULT       shift, and go to state 38
+    DPAR        shift, and go to state 39
+    UAND        shift, and go to state 41
+
+    Fator  go to state 89
+    termo  go to state 45
+
+
+State 67
+
+   25 ExpressaoBin: Expressao MENOR . Fator
+
+    VAR         shift, and go to state 30
+    STR         shift, and go to state 31
+    CARACTER    shift, and go to state 32
+    BOOLEANO    shift, and go to state 33
+    NUM_INT     shift, and go to state 34
+    NUM_FLOAT   shift, and go to state 35
+    NUM_DOUBLE  shift, and go to state 36
+    SUB         shift, and go to state 37
+    UMULT       shift, and go to state 38
+    DPAR        shift, and go to state 39
+    UAND        shift, and go to state 41
+
+    Fator  go to state 90
+    termo  go to state 45
+
+
+State 68
+
+   26 ExpressaoBin: Expressao MAIGUAL . Fator
+
+    VAR         shift, and go to state 30
+    STR         shift, and go to state 31
+    CARACTER    shift, and go to state 32
+    BOOLEANO    shift, and go to state 33
+    NUM_INT     shift, and go to state 34
+    NUM_FLOAT   shift, and go to state 35
+    NUM_DOUBLE  shift, and go to state 36
+    SUB         shift, and go to state 37
+    UMULT       shift, and go to state 38
+    DPAR        shift, and go to state 39
+    UAND        shift, and go to state 41
+
+    Fator  go to state 91
+    termo  go to state 45
+
+
+State 69
+
+   27 ExpressaoBin: Expressao MEIGUAL . Fator
+
+    VAR         shift, and go to state 30
+    STR         shift, and go to state 31
+    CARACTER    shift, and go to state 32
+    BOOLEANO    shift, and go to state 33
+    NUM_INT     shift, and go to state 34
+    NUM_FLOAT   shift, and go to state 35
+    NUM_DOUBLE  shift, and go to state 36
+    SUB         shift, and go to state 37
+    UMULT       shift, and go to state 38
+    DPAR        shift, and go to state 39
+    UAND        shift, and go to state 41
+
+    Fator  go to state 92
+    termo  go to state 45
+
+
+State 70
+
+   29 ExpressaoBin: Expressao UAND . Fator
+
+    VAR         shift, and go to state 30
+    STR         shift, and go to state 31
+    CARACTER    shift, and go to state 32
+    BOOLEANO    shift, and go to state 33
+    NUM_INT     shift, and go to state 34
+    NUM_FLOAT   shift, and go to state 35
+    NUM_DOUBLE  shift, and go to state 36
+    SUB         shift, and go to state 37
+    UMULT       shift, and go to state 38
+    DPAR        shift, and go to state 39
+    UAND        shift, and go to state 41
+
+    Fator  go to state 93
+    termo  go to state 45
+
+
+State 71
+
+   28 ExpressaoBin: Expressao AND . Fator
+
+    VAR         shift, and go to state 30
+    STR         shift, and go to state 31
+    CARACTER    shift, and go to state 32
+    BOOLEANO    shift, and go to state 33
+    NUM_INT     shift, and go to state 34
+    NUM_FLOAT   shift, and go to state 35
+    NUM_DOUBLE  shift, and go to state 36
+    SUB         shift, and go to state 37
+    UMULT       shift, and go to state 38
+    DPAR        shift, and go to state 39
+    UAND        shift, and go to state 41
+
+    Fator  go to state 94
+    termo  go to state 45
+
+
+State 72
+
+   31 ExpressaoBin: Expressao XOR . Fator
+
+    VAR         shift, and go to state 30
+    STR         shift, and go to state 31
+    CARACTER    shift, and go to state 32
+    BOOLEANO    shift, and go to state 33
+    NUM_INT     shift, and go to state 34
+    NUM_FLOAT   shift, and go to state 35
+    NUM_DOUBLE  shift, and go to state 36
+    SUB         shift, and go to state 37
+    UMULT       shift, and go to state 38
+    DPAR        shift, and go to state 39
+    UAND        shift, and go to state 41
+
+    Fator  go to state 95
+    termo  go to state 45
+
+
+State 73
+
+   30 ExpressaoBin: Expressao OR . Fator
+
+    VAR         shift, and go to state 30
+    STR         shift, and go to state 31
+    CARACTER    shift, and go to state 32
+    BOOLEANO    shift, and go to state 33
+    NUM_INT     shift, and go to state 34
+    NUM_FLOAT   shift, and go to state 35
+    NUM_DOUBLE  shift, and go to state 36
+    SUB         shift, and go to state 37
+    UMULT       shift, and go to state 38
+    DPAR        shift, and go to state 39
+    UAND        shift, and go to state 41
+
+    Fator  go to state 96
+    termo  go to state 45
+
+
+State 74
+
+   38 Fator: Fator DIV . termo
+
+    VAR         shift, and go to state 30
+    STR         shift, and go to state 31
+    CARACTER    shift, and go to state 32
+    BOOLEANO    shift, and go to state 33
+    NUM_INT     shift, and go to state 34
+    NUM_FLOAT   shift, and go to state 35
+    NUM_DOUBLE  shift, and go to state 36
+    SUB         shift, and go to state 37
+    UMULT       shift, and go to state 38
+    DPAR        shift, and go to state 39
+    UAND        shift, and go to state 41
+
+    termo  go to state 97
+
+
+State 75
+
+   36 Fator: Fator MULT . termo
+
+    VAR         shift, and go to state 30
+    STR         shift, and go to state 31
+    CARACTER    shift, and go to state 32
+    BOOLEANO    shift, and go to state 33
+    NUM_INT     shift, and go to state 34
+    NUM_FLOAT   shift, and go to state 35
+    NUM_DOUBLE  shift, and go to state 36
+    SUB         shift, and go to state 37
+    UMULT       shift, and go to state 38
+    DPAR        shift, and go to state 39
+    UAND        shift, and go to state 41
+
+    termo  go to state 98
+
+
+State 76
+
+   37 Fator: Fator UMULT . termo
+
+    VAR         shift, and go to state 30
+    STR         shift, and go to state 31
+    CARACTER    shift, and go to state 32
+    BOOLEANO    shift, and go to state 33
+    NUM_INT     shift, and go to state 34
+    NUM_FLOAT   shift, and go to state 35
+    NUM_DOUBLE  shift, and go to state 36
+    SUB         shift, and go to state 37
+    UMULT       shift, and go to state 38
+    DPAR        shift, and go to state 39
+    UAND        shift, and go to state 41
+
+    termo  go to state 99
+
+
+State 77
+
+   39 Fator: Fator REST . termo
+
+    VAR         shift, and go to state 30
+    STR         shift, and go to state 31
+    CARACTER    shift, and go to state 32
+    BOOLEANO    shift, and go to state 33
+    NUM_INT     shift, and go to state 34
+    NUM_FLOAT   shift, and go to state 35
+    NUM_DOUBLE  shift, and go to state 36
+    SUB         shift, and go to state 37
+    UMULT       shift, and go to state 38
+    DPAR        shift, and go to state 39
+    UAND        shift, and go to state 41
+
+    termo  go to state 100
+
+
+State 78
+
+    9 Print: PRINT DPAR Expressao EPAR . SEMICOLON
+
+    SEMICOLON  shift, and go to state 101
+
+
+State 79
+
+    8 Write: WRITE DPAR Expressao EPAR . SEMICOLON
+
+    SEMICOLON  shift, and go to state 102
+
+
+State 80
+
+   18 Atribuicao: UMULT VAR ATRIB Expressao . SEMICOLON
+   22 ExpressaoBin: Expressao . COMP Fator
+   23             | Expressao . DIF Fator
+   24             | Expressao . MAIOR Fator
+   25             | Expressao . MENOR Fator
+   26             | Expressao . MAIGUAL Fator
+   27             | Expressao . MEIGUAL Fator
+   28             | Expressao . AND Fator
+   29             | Expressao . UAND Fator
+   30             | Expressao . OR Fator
+   31             | Expressao . XOR Fator
+   32             | Expressao . COMP TIPO
+   33             | Expressao . SOMA Fator
+   34             | Expressao . SUB Fator
+
+    SOMA       shift, and go to state 61
+    SUB        shift, and go to state 62
+    SEMICOLON  shift, and go to state 103
+    COMP       shift, and go to state 64
+    DIF        shift, and go to state 65
+    MAIOR      shift, and go to state 66
+    MENOR      shift, and go to state 67
+    MAIGUAL    shift, and go to state 68
+    MEIGUAL    shift, and go to state 69
+    UAND       shift, and go to state 70
+    AND        shift, and go to state 71
+    XOR        shift, and go to state 72
+    OR         shift, and go to state 73
+
+
+State 81
+
+   19 Atribuicao: UAND VAR ATRIB Expressao . SEMICOLON
+   22 ExpressaoBin: Expressao . COMP Fator
+   23             | Expressao . DIF Fator
+   24             | Expressao . MAIOR Fator
+   25             | Expressao . MENOR Fator
+   26             | Expressao . MAIGUAL Fator
+   27             | Expressao . MEIGUAL Fator
+   28             | Expressao . AND Fator
+   29             | Expressao . UAND Fator
+   30             | Expressao . OR Fator
+   31             | Expressao . XOR Fator
+   32             | Expressao . COMP TIPO
+   33             | Expressao . SOMA Fator
+   34             | Expressao . SUB Fator
+
+    SOMA       shift, and go to state 61
+    SUB        shift, and go to state 62
+    SEMICOLON  shift, and go to state 104
+    COMP       shift, and go to state 64
+    DIF        shift, and go to state 65
+    MAIOR      shift, and go to state 66
+    MENOR      shift, and go to state 67
+    MAIGUAL    shift, and go to state 68
+    MEIGUAL    shift, and go to state 69
+    UAND       shift, and go to state 70
+    AND        shift, and go to state 71
+    XOR        shift, and go to state 72
+    OR         shift, and go to state 73
+
+
+State 82
+
+   14 NVAR: NVAR VIRGULA VAR ATRIB . Expressao
+
+    VAR         shift, and go to state 30
+    STR         shift, and go to state 31
+    CARACTER    shift, and go to state 32
+    BOOLEANO    shift, and go to state 33
+    NUM_INT     shift, and go to state 34
+    NUM_FLOAT   shift, and go to state 35
+    NUM_DOUBLE  shift, and go to state 36
+    SUB         shift, and go to state 37
+    UMULT       shift, and go to state 38
+    DPAR        shift, and go to state 39
+    NOT         shift, and go to state 40
+    UAND        shift, and go to state 41
+
+    Expressao     go to state 105
+    ExpressaoBin  go to state 43
+    Fator         go to state 44
+    termo         go to state 45
+
+
+State 83
+
+   47 termo: DPAR Expressao EPAR .
+
+    $default  reduce using rule 47 (termo)
+
+
+State 84
+
+   33 ExpressaoBin: Expressao SOMA Fator .
+   36 Fator: Fator . MULT termo
+   37      | Fator . UMULT termo
+   38      | Fator . DIV termo
+   39      | Fator . REST termo
+
+    DIV    shift, and go to state 74
+    MULT   shift, and go to state 75
+    UMULT  shift, and go to state 76
+    REST   shift, and go to state 77
+
+    $default  reduce using rule 33 (ExpressaoBin)
+
+
+State 85
+
+   34 ExpressaoBin: Expressao SUB Fator .
+   36 Fator: Fator . MULT termo
+   37      | Fator . UMULT termo
+   38      | Fator . DIV termo
+   39      | Fator . REST termo
+
+    DIV    shift, and go to state 74
+    MULT   shift, and go to state 75
+    UMULT  shift, and go to state 76
+    REST   shift, and go to state 77
+
+    $default  reduce using rule 34 (ExpressaoBin)
+
+
+State 86
+
+   32 ExpressaoBin: Expressao COMP TIPO .
+
+    $default  reduce using rule 32 (ExpressaoBin)
+
+
+State 87
+
+   22 ExpressaoBin: Expressao COMP Fator .
+   36 Fator: Fator . MULT termo
+   37      | Fator . UMULT termo
+   38      | Fator . DIV termo
+   39      | Fator . REST termo
+
+    DIV    shift, and go to state 74
+    MULT   shift, and go to state 75
+    UMULT  shift, and go to state 76
+    REST   shift, and go to state 77
+
+    $default  reduce using rule 22 (ExpressaoBin)
+
+
+State 88
+
+   23 ExpressaoBin: Expressao DIF Fator .
+   36 Fator: Fator . MULT termo
+   37      | Fator . UMULT termo
+   38      | Fator . DIV termo
+   39      | Fator . REST termo
+
+    DIV    shift, and go to state 74
+    MULT   shift, and go to state 75
+    UMULT  shift, and go to state 76
+    REST   shift, and go to state 77
+
+    $default  reduce using rule 23 (ExpressaoBin)
+
+
+State 89
+
+   24 ExpressaoBin: Expressao MAIOR Fator .
+   36 Fator: Fator . MULT termo
+   37      | Fator . UMULT termo
+   38      | Fator . DIV termo
+   39      | Fator . REST termo
+
+    DIV    shift, and go to state 74
+    MULT   shift, and go to state 75
+    UMULT  shift, and go to state 76
+    REST   shift, and go to state 77
+
+    $default  reduce using rule 24 (ExpressaoBin)
+
+
+State 90
+
+   25 ExpressaoBin: Expressao MENOR Fator .
+   36 Fator: Fator . MULT termo
+   37      | Fator . UMULT termo
+   38      | Fator . DIV termo
+   39      | Fator . REST termo
+
+    DIV    shift, and go to state 74
+    MULT   shift, and go to state 75
+    UMULT  shift, and go to state 76
+    REST   shift, and go to state 77
+
+    $default  reduce using rule 25 (ExpressaoBin)
+
+
+State 91
+
+   26 ExpressaoBin: Expressao MAIGUAL Fator .
+   36 Fator: Fator . MULT termo
+   37      | Fator . UMULT termo
+   38      | Fator . DIV termo
+   39      | Fator . REST termo
+
+    DIV    shift, and go to state 74
+    MULT   shift, and go to state 75
+    UMULT  shift, and go to state 76
+    REST   shift, and go to state 77
+
+    $default  reduce using rule 26 (ExpressaoBin)
+
+
+State 92
+
+   27 ExpressaoBin: Expressao MEIGUAL Fator .
+   36 Fator: Fator . MULT termo
+   37      | Fator . UMULT termo
+   38      | Fator . DIV termo
+   39      | Fator . REST termo
+
+    DIV    shift, and go to state 74
+    MULT   shift, and go to state 75
+    UMULT  shift, and go to state 76
+    REST   shift, and go to state 77
+
+    $default  reduce using rule 27 (ExpressaoBin)
+
+
+State 93
+
+   29 ExpressaoBin: Expressao UAND Fator .
+   36 Fator: Fator . MULT termo
+   37      | Fator . UMULT termo
+   38      | Fator . DIV termo
+   39      | Fator . REST termo
+
+    DIV    shift, and go to state 74
+    MULT   shift, and go to state 75
+    UMULT  shift, and go to state 76
+    REST   shift, and go to state 77
+
+    $default  reduce using rule 29 (ExpressaoBin)
+
+
+State 94
+
+   28 ExpressaoBin: Expressao AND Fator .
+   36 Fator: Fator . MULT termo
+   37      | Fator . UMULT termo
+   38      | Fator . DIV termo
+   39      | Fator . REST termo
+
+    DIV    shift, and go to state 74
+    MULT   shift, and go to state 75
+    UMULT  shift, and go to state 76
+    REST   shift, and go to state 77
+
+    $default  reduce using rule 28 (ExpressaoBin)
+
+
+State 95
+
+   31 ExpressaoBin: Expressao XOR Fator .
+   36 Fator: Fator . MULT termo
+   37      | Fator . UMULT termo
+   38      | Fator . DIV termo
+   39      | Fator . REST termo
+
+    DIV    shift, and go to state 74
+    MULT   shift, and go to state 75
+    UMULT  shift, and go to state 76
+    REST   shift, and go to state 77
+
+    $default  reduce using rule 31 (ExpressaoBin)
+
+
+State 96
+
+   30 ExpressaoBin: Expressao OR Fator .
+   36 Fator: Fator . MULT termo
+   37      | Fator . UMULT termo
+   38      | Fator . DIV termo
+   39      | Fator . REST termo
+
+    DIV    shift, and go to state 74
+    MULT   shift, and go to state 75
+    UMULT  shift, and go to state 76
+    REST   shift, and go to state 77
+
+    $default  reduce using rule 30 (ExpressaoBin)
+
+
+State 97
+
+   38 Fator: Fator DIV termo .
+
+    $default  reduce using rule 38 (Fator)
+
+
+State 98
+
+   36 Fator: Fator MULT termo .
+
+    $default  reduce using rule 36 (Fator)
+
+
+State 99
+
+   37 Fator: Fator UMULT termo .
+
+    $default  reduce using rule 37 (Fator)
+
+
+State 100
+
+   39 Fator: Fator REST termo .
+
+    $default  reduce using rule 39 (Fator)
+
+
+State 101
+
+    9 Print: PRINT DPAR Expressao EPAR SEMICOLON .
+
+    $default  reduce using rule 9 (Print)
+
+
+State 102
+
+    8 Write: WRITE DPAR Expressao EPAR SEMICOLON .
+
+    $default  reduce using rule 8 (Write)
+
+
+State 103
+
+   18 Atribuicao: UMULT VAR ATRIB Expressao SEMICOLON .
+
+    $default  reduce using rule 18 (Atribuicao)
+
+
+State 104
+
+   19 Atribuicao: UAND VAR ATRIB Expressao SEMICOLON .
+
+    $default  reduce using rule 19 (Atribuicao)
+
+
+State 105
+
+   14 NVAR: NVAR VIRGULA VAR ATRIB Expressao .
+   22 ExpressaoBin: Expressao . COMP Fator
+   23             | Expressao . DIF Fator
+   24             | Expressao . MAIOR Fator
+   25             | Expressao . MENOR Fator
+   26             | Expressao . MAIGUAL Fator
+   27             | Expressao . MEIGUAL Fator
+   28             | Expressao . AND Fator
+   29             | Expressao . UAND Fator
+   30             | Expressao . OR Fator
+   31             | Expressao . XOR Fator
+   32             | Expressao . COMP TIPO
+   33             | Expressao . SOMA Fator
+   34             | Expressao . SUB Fator
+
+    SOMA     shift, and go to state 61
+    SUB      shift, and go to state 62
+    COMP     shift, and go to state 64
+    DIF      shift, and go to state 65
+    MAIOR    shift, and go to state 66
+    MENOR    shift, and go to state 67
+    MAIGUAL  shift, and go to state 68
+    MEIGUAL  shift, and go to state 69
+    UAND     shift, and go to state 70
+    AND      shift, and go to state 71
+    XOR      shift, and go to state 72
+    OR       shift, and go to state 73
+
+    $default  reduce using rule 14 (NVAR)

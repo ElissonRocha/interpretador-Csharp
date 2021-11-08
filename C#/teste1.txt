@@ -1,0 +1,15 @@
+int a,b,c=0, d=1, e;
+string f, g="abc";
+
+a=c+d;
+b=c-d;
+e=c*d;
+f=g+a;
+
+Console.WriteLine(a);
+Console.WriteLine(b);
+Console.WriteLine(c);
+Console.WriteLine(d);
+Console.WriteLine(e);
+Console.WriteLine(f);
+Console.WriteLine(g);
